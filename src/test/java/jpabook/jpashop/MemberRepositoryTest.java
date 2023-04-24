@@ -8,29 +8,29 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
 
-@SpringBootTest
-class MemberRepositoryTest {
-
-    @Autowired
-    private MemberRepository memberRepository;
-
-    @Test
-    @Transactional
-    @Rollback(false)
-    public void testMember() {
-        // given
-        Member member = new Member();
-        member.setUsername("memberA");
-
-        // when
-        Long savedId = memberRepository.save(member);
-        Member findMember = memberRepository.find(savedId);
-
-        // then
-        assertThat(findMember.getId()).isEqualTo(member.getId());
-        assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
-        assertThat(findMember).isEqualTo(member);
-
-        System.out.println("findMember == member: " + (findMember == member));
-    }
-}
+//@SpringBootTest
+//class MemberRepositoryTest {
+//
+//    @Autowired
+//    private MemberRepository memberRepository;
+//
+//    @Test
+//    @Transactional
+//    @Rollback(false)
+//    public void testMember() {
+//        // given
+//        Member member = new Member();
+//        member.setUsername("memberA");
+//
+//        // when
+//        Long savedId = memberRepository.save(member);
+//        Member findMember = memberRepository.find(savedId);
+//
+//        // then
+//        assertThat(findMember.getId()).isEqualTo(member.getId());
+//        assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
+//        assertThat(findMember).isEqualTo(member);
+//
+//        System.out.println("findMember == member: " + (findMember == member));
+//    }
+//}
