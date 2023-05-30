@@ -7,6 +7,7 @@ import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.repository.OrderSearch;
 import jpabook.jpashop.repository.order.OrderRepository;
 import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,7 +45,17 @@ public class OrderApiController {
         return result;
     }
 
-    @Data
+    @GetMapping("/api/v3/orders")
+    public List<OrderDto> ordersV3() {
+        List<Order> orders = orderRepository.findAllWithItem();
+        List<OrderDto> result = orders.stream()
+                .map(OrderDto::new)
+                .collect(Collectors.toList());
+
+        return result;
+    }
+
+    @Getter
     static class OrderDto {
 
         private Long orderId;
@@ -67,7 +78,7 @@ public class OrderApiController {
         }
     }
 
-    @Data
+    @Getter
     static class OrderItemDto {
 
         private String itemName;
